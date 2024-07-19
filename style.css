@@ -1,0 +1,303 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    list-style-type: none;
+}
+
+body {
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    overflow: hidden;
+
+}
+
+header {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 600px;
+    gap: 10%;
+    z-index: 2;
+
+    & img {
+        width: 250px;
+    }
+
+    & nav {
+        & ul {
+            display: grid;
+            grid-template-columns: repeat(3, 200px);
+        }
+    }
+
+}
+
+section {
+    background-image: radial-gradient(#230132, #6d00d9);
+    height: 100vh;
+    position: relative;
+
+    & .list {
+        width: 75vw;
+        height: 100%;
+        margin: auto;
+        position: relative;
+
+        & .item {
+            position: absolute;
+            inset: 0;
+
+            & .car-img {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 65%;
+
+                & img {
+                    width: 100%;
+                    transform: rotate(-30deg);
+
+                }
+
+            }
+
+            & .content {
+                position: absolute;
+                right: 100px;
+                width: 70%;
+                height: 100%;
+                display: flex;
+                transform: translateY(+2%);
+                transform: translateX(+4%);
+                flex-direction: column;
+                justify-content: center;
+                align-items: end;
+                gap: 20px;
+
+
+                & .car-info {
+                    font-weight: bold;
+                }
+
+                & h2 {
+                    font-size: 5em;
+                    line-height: 1em;
+                    font-family: "League Gothic", sans-serif;
+                }
+
+                & .descriçao {
+                    color: #eeeeee;
+                    font-size: 12px;
+                    text-align: right;
+                    max-width: 400px;
+                }
+
+                & .botao-saiba {
+                    border-radius: 30px;
+                    height: 35px;
+                    width: 120px;
+                    text-transform: uppercase;
+                    border-radius: 2px solid #791fd3;
+                    background-color: #beff1b;
+                    color: #000;
+                    cursor: pointer;
+                    font-weight: bold;
+                }
+
+            }
+
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            height: 200px;
+            width: 100%;
+            top: 50%;
+            border-top: 1px solid #eeeeee;
+        }
+    }
+
+    & .indicadores {
+        position: absolute;
+        top: 55%;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 200px;
+        width: 90vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        gap: 15px;
+
+        & .numero {
+            font-size: 5em;
+            font-family: "League Gothic", sans-serif;
+
+
+        }
+
+        & ul {
+            display: flex;
+            gap: 10px;
+
+            & .ativo {
+                background-color: white;
+            }
+
+
+            & li {
+                width: 50px;
+                height: 5px;
+                background-color: #beff1b;
+                border-radius: 5px;
+                transition: 0.5s;
+
+
+            }
+
+
+        }
+
+    }
+
+    & .setas {
+        width: 75vw;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -25px);
+        display: flex;
+        justify-content: space-between;
+
+
+        & button:nth-child(1) {
+
+            & img {
+                transform: scale(-1);
+
+            }
+
+        }
+
+        & button {
+            top: 60%;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+
+            & img {
+                height: 30px;
+                cursor: pointer;
+            }
+
+            &:hover {
+                background-color: #beff1b;
+                width: 60px;
+                height: 60px;
+                transition: linear 0.1s;
+            }
+        }
+    }
+}
+
+/*Aqui está a forma como o item vai entrar na página*/
+section {
+
+    & .list {
+        --calculation: 1;
+
+        & .item {
+            transform: translateX(calc(100vw * var(--calculation)));
+            transition: 0.5s;
+            opacity: 1;
+
+            & .car-img {
+
+                & img {
+                    transform: rotate(0);
+                    transition: 0.5s;
+                    transition-delay: 0.3s;
+
+                }
+
+            }
+
+            & .content {
+
+                & .car-info,
+                h2,
+                .descriçao,
+                .saiba {
+                    transform: translateX(calc(200px * var(--calculation)));
+                    ;
+                    transition: 0.7s;
+                    transition-delay: 0.3s;
+
+                }
+            }
+
+            h2 {
+                transition-delay: 0.5s;
+                opacity: 0;
+            }
+
+
+
+
+            .car-info {
+                transition-delay: 0.7s;
+                opacity: 0;
+
+            }
+
+            .descriçao {
+                transition-delay: 0.9s;
+                opacity: 0;
+            }
+
+            .saiba {
+                transition-delay: 0.11s;
+                opacity: 0;
+            }
+
+
+
+        }
+
+        /*Aqui está a config. do item que vai permanecer visível na página*/
+        & .active {
+            
+            transform: translateX(0);
+            opacity: 1;
+
+            & .car-img {
+
+                & img {
+                    transform: rotate(-30deg);
+
+                }
+            }
+
+            & .content {
+
+                & .car-info,
+                h2,
+                .descriçao,
+                .saiba {
+                    transform: translateX(0);
+                    opacity: 1;
+
+                }
+            }
+        }
+
+    }
+}
